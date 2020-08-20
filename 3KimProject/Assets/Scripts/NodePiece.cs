@@ -12,6 +12,8 @@ public class NodePiece : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [HideInInspector]
     public Vector2 pos;
     [HideInInspector]
+    public NodePiece flipped;
+    [HideInInspector]
     public RectTransform rect;
 
     bool updating;
@@ -19,6 +21,7 @@ public class NodePiece : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void Initalize(int v, Point p, Sprite piece)
     {
+        flipped = null;
         img = GetComponent<Image>();
         rect = GetComponent<RectTransform>();
 
@@ -39,9 +42,28 @@ public class NodePiece : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         pos = new Vector2(32 + (64 * index.x), -32 - (64 * index.y));
     }
 
+    public void MovePositionTo(Vector2 move)
+    {
+        rect.anchoredPosition = Vector2.Lerp(rect.anchoredPosition, move, Time.deltaTime * 16f);
+            
+    }
+
     public bool UpdatePiece()
     {
-        return true;
+        if (Vector3.Distance(rect.anchoredPosition, pos) > 1)
+        {
+            MovePositionTo(pos);
+            updating = true;
+            return true;
+        }
+
+        else
+        {
+            rect.anchoredPosition = pos;
+            updating = false;
+            return false;
+        }
+       
     }
     void UpdateName()
     {
@@ -51,11 +73,13 @@ public class NodePiece : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         if (updating) return;
-        Debug.Log("Grab" + transform.name);        
+        Debug.Log("Grab" + transform.name);
+        MovePieces.instance.MovePiece(this);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         Debug.Log("Let go" + transform.name);
+        MovePieces.instance.DropPiece();
     }
 }

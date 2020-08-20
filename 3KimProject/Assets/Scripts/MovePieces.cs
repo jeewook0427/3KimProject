@@ -33,6 +33,43 @@ public class MovePieces : MonoBehaviour
 
             newIndex = Point.clone(moving.index);
             Point add = Point.zero;
+            if(dir.magnitude > 32) // 마우스가 32픽셀 이상 떨어져 있으면
+            {
+                if (aDir.x > aDir.y)
+                    add = (new Point((nDir.x > 0) ? 1 : -1, 0));
+                else if (aDir.y > aDir.x)
+                    add = (new Point(0, (nDir.y > 0 )? -1 : 1));
+            }
+
+            newIndex.add(add);
+
+            Vector2 pos = game.getPositionFromPoint(moving.index);
+            if(!newIndex.Equals(moving.index))
+            {
+                pos += Point.mult(new Point(add.x, -add.y), 16).ToVector();
+            }
+
+            moving.MovePositionTo(pos);
         }
+    }
+
+    public void MovePiece(NodePiece piece)
+    {
+        if (moving != null) return;
+        moving = piece;
+        mouseStart = Input.mousePosition;
+    }
+
+    public void DropPiece()
+    {
+        if (moving == null) return;
+        Debug.Log("Droped");
+        if (!newIndex.Equals(moving.index))
+            game.FlipPieces(moving.index, newIndex);
+        else
+            game.ResetPiece(moving);
+
+       
+        moving = null;
     }
 }

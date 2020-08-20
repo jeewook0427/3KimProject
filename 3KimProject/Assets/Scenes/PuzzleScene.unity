@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 166193842}
   - component: {fileID: 166193843}
+  - component: {fileID: 166193844}
   m_Layer: 0
   m_Name: _Match3
   m_TagString: Untagged
@@ -188,6 +189,18 @@ MonoBehaviour:
   gameBoard: {fileID: 1399821918}
   nodePiece: {fileID: 302094448268856868, guid: 910504332075e174f9fbd1b7f59a63a4,
     type: 3}
+--- !u!114 &166193844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166193841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 270a4926fbdf8804ab2289c431604326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

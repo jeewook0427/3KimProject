@@ -17,6 +17,8 @@ public class Match3 : MonoBehaviour
     int height = 12;
     Node[,] board; //???
 
+    List<NodePiece> update;
+
     System.Random random;
 
     // Start is called before the first frame update
@@ -29,6 +31,7 @@ public class Match3 : MonoBehaviour
     {
         string seed = getRandomSeed();
         random = new System.Random(seed.GetHashCode());
+        update = new List<NodePiece>();
 
         InitializeBoard();
         verifyBoard();
@@ -45,6 +48,41 @@ public class Match3 : MonoBehaviour
                 board[x, y] = new Node((boardLayout.rows[y].row[x])? -1 : fillPiece(), new Point(x, y));
             }
         }
+    }
+
+    public void ResetPiece(NodePiece piece)       
+    {
+        piece.ResetPosition();
+        piece.flipped = null;
+        update.Add(piece);
+    }
+
+    public void FlipPieces(Point one, Point two)
+    {
+        if (getValueAtPoint(one) < 0) return;
+
+        Node nodeOne = getNodeAtPoint(one);
+        NodePiece pieceOne = nodeOne.getPiece();
+        if (getValueAtPoint(two) > 0)
+        {
+            Node nodeTwo = getNodeAtPoint(two);
+            NodePiece pieceTwo = nodeTwo.getPiece();
+            nodeOne.SetPiece(pieceTwo);
+            nodeTwo.SetPiece(pieceOne);
+
+            pieceOne.flipped = pieceTwo;
+            pieceOne.flipped = pieceOne;
+
+            update.Add(pieceOne);
+            update.Add(pieceTwo);
+        }
+        else
+            ResetPiece(pieceOne);
+    }
+
+    Node getNodeAtPoint (Point p)
+    {
+        return board[p.x, p.y];
     }
 
     void verifyBoard()
@@ -76,13 +114,16 @@ public class Match3 : MonoBehaviour
         {
             for(int y=0; y<height; y++)
             {
-                int val = board[x, y].value;
+                Node node = getNodeAtPoint(new Point(x, y));
+
+                int val = node.value;
                 if (val <= 0) continue;
                 GameObject p = Instantiate(nodePiece, gameBoard);
-                NodePiece node = p.GetComponent<NodePiece>();
+                NodePiece piece = p.GetComponent<NodePiece>();
                 RectTransform rect = p.GetComponent<RectTransform>();
                 rect.anchoredPosition = new Vector2(32 + (64 * x), -32 - (64 * y));
-                node.Initalize(val, new Point(x, y), pieces[val - 1]);
+                piece.Initalize(val, new Point(x, y), pieces[val - 1]);
+                node.SetPiece(piece);
             }
         }
     }
@@ -228,9 +269,23 @@ public class Match3 : MonoBehaviour
    
     void Update()
     {
-        
+        List<NodePiece> finishedUpdating = new List<NodePiece>();
+        for(int i=0; i<update.Count; i++)
+        {
+            NodePiece piece = update[i];
+            bool updating = piece.UpdatePiece();
+
+            if (!piece.UpdatePiece()) finishedUpdating.Add(piece);
+        }
+
+        for(int i=0; i<finishedUpdating.Count; i++)
+        {
+            NodePiece piece = finishedUpdating[i];
+            update.Remove(piece);
+        }
     }
 
+    
     string getRandomSeed()
     {
         string seed = "";
@@ -240,6 +295,11 @@ public class Match3 : MonoBehaviour
 
         return seed;
     }
+
+    public Vector2 getPositionFromPoint(Point p)
+    {
+        return new Vector2(32 + (64*p.x), -32 -(64*p.y));
+    }
 }
 
 [System.Serializable]
@@ -248,11 +308,25 @@ public class Node
     // 0 = 빈칸, 1 = 빨간색 , 2 = 파란색, 3= 노란색 , 4 = 초록색, 5= 보라색 , -1=구멍
     public int value;
     public Point index;
+    public NodePiece piece;
 
     public Node(int v, Point i)
     {
         value = v;
         index = i;
+    }
+
+    public void SetPiece(NodePiece p)
+    {
+        piece = p;
+        value = (piece == null) ? 0 : piece.value;
+        if (piece == null) return;
+        piece.SetIndex(index);
+    }
+
+    public NodePiece getPiece()
+    {
+        return piece;
     }
     
 }
