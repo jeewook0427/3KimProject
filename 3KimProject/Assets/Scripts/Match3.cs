@@ -1,24 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Match3 : MonoBehaviour
 {
     public ArrayLayout boardLayout;
-
+   
     [Header("UI Elements")]
     public Sprite[] pieces;
     public RectTransform gameBoard;
+    public RectTransform killedBoard;
 
     [Header("Prefabs")]
     public GameObject nodePiece;
+    public GameObject killedpiece;
+    public static int ComboCount=0;
 
+    [Header("Text")]
+    public Text comboText;
     int width = 12;
     int height = 12;
+    int[] fills;
     Node[,] board; //???
 
     List<NodePiece> update;
-
+    List<FlippedPieces> flipped;
+    List<NodePiece> dead;
+    List<KilledPiece> killed;
     System.Random random;
 
     // Start is called before the first frame update
@@ -29,9 +39,13 @@ public class Match3 : MonoBehaviour
 
     void StartGame()
     {
+        fills = new int[width];
         string seed = getRandomSeed();
         random = new System.Random(seed.GetHashCode());
         update = new List<NodePiece>();
+        flipped = new List<FlippedPieces>();
+        dead = new List<NodePiece>();
+        killed = new List<KilledPiece>();
 
         InitializeBoard();
         verifyBoard();
@@ -53,11 +67,11 @@ public class Match3 : MonoBehaviour
     public void ResetPiece(NodePiece piece)       
     {
         piece.ResetPosition();
-        piece.flipped = null;
+       
         update.Add(piece);
     }
 
-    public void FlipPieces(Point one, Point two)
+    public void FlipPieces(Point one, Point two, bool main)
     {
         if (getValueAtPoint(one) < 0) return;
 
@@ -70,14 +84,36 @@ public class Match3 : MonoBehaviour
             nodeOne.SetPiece(pieceTwo);
             nodeTwo.SetPiece(pieceOne);
 
-            pieceOne.flipped = pieceTwo;
-            pieceOne.flipped = pieceOne;
+            if(main)
+                flipped.Add(new FlippedPieces(pieceOne, pieceTwo));
 
             update.Add(pieceOne);
             update.Add(pieceTwo);
         }
         else
             ResetPiece(pieceOne);
+    }
+
+    void KilledPiece(Point p)
+    {
+        List<KilledPiece> available = new List<KilledPiece>();
+        for (int i = 0; i < killed.Count; i++)
+            if (!killed[i].falling) available.Add(killed[i]);
+
+        KilledPiece set = null;
+        if (available.Count > 0)
+            set = available[0];
+        else
+        {
+            GameObject kill = GameObject.Instantiate(killedpiece, killedBoard);
+            KilledPiece kPiece = kill.GetComponent<KilledPiece>();
+            set = kPiece;
+            killed.Add(kPiece);
+        }
+
+        int val = getValueAtPoint(p) - 1;
+        if ((set != null) && val >= 0 && val < pieces.Length)
+            set.Initialize(pieces[val], getPositionFromPoint(p));
     }
 
     Node getNodeAtPoint (Point p)
@@ -152,6 +188,7 @@ public class Match3 : MonoBehaviour
 
     List<Point> isConnected(Point p, bool main)
     {
+        bool isCombo = false;
         List<Point> connected = new List<Point>();
         int val = getValueAtPoint(p);
         Point[] directions =
@@ -180,8 +217,12 @@ public class Match3 : MonoBehaviour
             }
 
             if(same >1) // 하나 이상의 똑같은 것이 상,하,좌,우 중 하나 있다면 
+            {
                 AddPoints(ref connected, line);
-        }
+                isCombo = true;
+            }
+                                       
+        }       
 
         for (int i = 0; i < 2; i++) // 검사하는 블록이 중간에 있다면
         {
@@ -192,51 +233,59 @@ public class Match3 : MonoBehaviour
             foreach (Point next in check) // 양쪽 블록을 검사해서 양쪽 모두 같다면 리스트에 넣는다.
             {
                 if(getValueAtPoint(next) == val)
-                {
+                {                    
                     line.Add(next);
                     same++;
                 }
             }
 
             if (same > 1)
+            {
                 AddPoints(ref connected, line);
+                isCombo = true;
+            }
+                
            
         }
 
-        for (int i = 0; i < 4; i++) //2x2체크
-        {
-            List<Point> square = new List<Point>();
+        if (isCombo)
+            ComboCount++;
+      
+        //for (int i = 0; i < 4; i++) //2x2체크
+        //{
+        //    List<Point> square = new List<Point>();
 
-            int same = 0;
-            int next = i + 1;
-            if (next >= 4)
-                next -= 4;
+        //    int same = 0;
+        //    int next = i + 1;
+        //    if (next >= 4)
+        //        next -= 4;
 
-            Point[] check = { Point.add(p, directions[i]), Point.add(p, directions[next]),
-                Point.add(p, Point.add(directions[i], directions[next]))};
-            foreach (Point pnt in check) // 양쪽 블록을 검사해서 양쪽 모두 같다면 리스트에 넣는다.
-            {
-                if (getValueAtPoint(pnt) == val)
-                {
-                    square.Add(p);
-                    same++;
-                }
-            }
+        //    Point[] check = { Point.add(p, directions[i]), Point.add(p, directions[next]),
+        //        Point.add(p, Point.add(directions[i], directions[next]))};
+        //    foreach (Point pnt in check) // 양쪽 블록을 검사해서 양쪽 모두 같다면 리스트에 넣는다.
+        //    {
+        //        if (getValueAtPoint(pnt) == val)
+        //        {
+        //            square.Add(p);
+        //            same++;
+        //        }
+        //    }
 
-            if (same > 2)
-                AddPoints(ref connected, square);
-        }
+        //    if (same > 2)
+        //        AddPoints(ref connected, square);
+        //}
 
-        if(main) // 여러가지 매치가 동시에 일어날 때
+        if (main) // 여러가지 매치가 동시에 일어날 때
         {
             for(int i=0; i<connected.Count; i++)
             {
                 AddPoints(ref connected, isConnected(connected[i], false));
+                ComboCount--;
             }
         }
 
-        if (connected.Count > 0)
-            connected.Add(p);
+        //if (connected.Count > 0)
+        //    connected.Add(p);
 
         return connected;
     }
@@ -281,8 +330,139 @@ public class Match3 : MonoBehaviour
         for(int i=0; i<finishedUpdating.Count; i++)
         {
             NodePiece piece = finishedUpdating[i];
+            FlippedPieces flip = getFlipped(piece);
+            NodePiece flippedPiece = null;
+
+            int x = (int)piece.index.x;
+            fills[x] = Mathf.Clamp(fills[x] - 1, 0, width);
+
+            bool wasFlipped = (flip != null);
+                      
+
+            List<Point> connected = isConnected(piece.index, true);
+           
+            if (wasFlipped)
+            {
+                flippedPiece = flip.getOtherPiece(piece);
+                AddPoints(ref connected, isConnected(flippedPiece.index, true));
+                
+            }
+                
+            if(connected.Count ==0)
+            {
+                if (wasFlipped)
+                {
+                    FlipPieces(piece.index, flippedPiece.index, false);
+                }
+            }
+            else
+            {
+                foreach(Point pnt in connected) // 노드피스 제거 
+                {
+                    KilledPiece(pnt);
+                    Node node = getNodeAtPoint(pnt);
+                    NodePiece nodePiece = node.getPiece();
+                    if(nodePiece != null)
+                    {
+                        nodePiece.gameObject.SetActive(false);
+                        dead.Add(nodePiece);
+                    }
+                    node.SetPiece(null);
+                }
+                ApplyGravityToBoard();
+            }
+
+            flipped.Remove(flip);
             update.Remove(piece);
+
+           
+            comboText.text = "Combo : " + ComboCount;
+            
+
+          
         }
+    }
+
+    void ApplyGravityToBoard()
+    {
+        for(int x=0; x<width; x++)
+        {
+            for (int y=(height -1); y>=0; y--)
+            {
+                Point p = new Point(x, y);
+                Node node = getNodeAtPoint(p);
+                int val = getValueAtPoint(p);
+                if (val != 0) continue;
+                for (int ny = (y - 1); ny >= -1; ny--)
+                {
+                    Point next = new Point(x, ny);
+                    int nextVal = getValueAtPoint(next);
+                    if (nextVal == 0)
+                        continue;
+                    if(nextVal != -1)
+                    {
+                        Node got = getNodeAtPoint(next);
+                        NodePiece piece = got.getPiece();
+
+                        node.SetPiece(piece);
+                        update.Add(piece);
+
+                        got.SetPiece(null);
+                    }
+
+                    else
+                    {
+                        int newVal = fillPiece();
+                        NodePiece piece;
+                        Point fallpnt = new Point(x, -1-fills[x]);
+                        if(dead.Count >0)
+                        {
+                            NodePiece revived = dead[0];
+                            revived.gameObject.SetActive(true);
+                            revived.rect.anchoredPosition = getPositionFromPoint(fallpnt);
+                          
+                            piece = revived;
+
+                            dead.RemoveAt(0);
+                        }
+
+                        else
+                        {
+                            GameObject obj = Instantiate(nodePiece, gameBoard);
+                            NodePiece n = obj.GetComponent<NodePiece>();
+                            RectTransform rect = obj.GetComponent<RectTransform>();
+                            rect.anchoredPosition = getPositionFromPoint(fallpnt);
+                            n.Initalize(newVal, p, pieces[newVal - 1]);
+                            piece = n;
+                        }
+
+                        piece.Initalize(newVal, p, pieces[newVal - 1]);
+                        Node hole = getNodeAtPoint(p);
+                        hole.SetPiece(piece);
+                        ResetPiece(piece);
+                        board[x, y].isCheck = false;
+                        fills[x]++;
+
+                    }
+                    
+                    break;
+                }
+            }
+        }
+    }
+
+    FlippedPieces getFlipped(NodePiece p)
+    {
+        FlippedPieces flip = null;
+        for (int i = 0; i < flipped.Count; i++)
+        {
+            if (flipped[i].getOtherPiece(p) != null)
+            {
+                flip = flipped[i];
+                break;
+            }
+        }
+        return flip;
     }
 
     
@@ -309,6 +489,7 @@ public class Node
     public int value;
     public Point index;
     public NodePiece piece;
+    public bool isCheck=false;
 
     public Node(int v, Point i)
     {
@@ -329,4 +510,27 @@ public class Node
         return piece;
     }
     
+}
+
+[System.Serializable]
+public class FlippedPieces
+{
+    public NodePiece one;
+    public NodePiece two;
+
+    public FlippedPieces(NodePiece o, NodePiece t)
+    {
+        one = o;
+        two = t;
+    }
+
+    public NodePiece getOtherPiece(NodePiece p)
+    {
+        if (p == one)
+            return two;
+        else if (p == two)
+            return one;
+        else
+            return null;
+    }
 }

@@ -8,7 +8,7 @@ public class MovePieces : MonoBehaviour
     Match3 game;
 
     NodePiece moving;
-    Point newIndex;
+    Point newIndex=new Point(0,0);
     Vector2 mouseStart;
 
     // Start is called before the first frame update
@@ -65,7 +65,7 @@ public class MovePieces : MonoBehaviour
         if (moving == null) return;
         Debug.Log("Droped");
         if (!newIndex.Equals(moving.index))
-            game.FlipPieces(moving.index, newIndex);
+            game.FlipPieces(moving.index, newIndex, true);
         else
             game.ResetPiece(moving);
 

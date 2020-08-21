@@ -8,11 +8,10 @@ public class NodePiece : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public int value;
     public Point index;
-
+  
     [HideInInspector]
     public Vector2 pos;
-    [HideInInspector]
-    public NodePiece flipped;
+    
     [HideInInspector]
     public RectTransform rect;
 
@@ -21,7 +20,7 @@ public class NodePiece : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void Initalize(int v, Point p, Sprite piece)
     {
-        flipped = null;
+       
         img = GetComponent<Image>();
         rect = GetComponent<RectTransform>();
 
@@ -73,6 +72,7 @@ public class NodePiece : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         if (updating) return;
+        Match3.ComboCount = 0;
         Debug.Log("Grab" + transform.name);
         MovePieces.instance.MovePiece(this);
     }
