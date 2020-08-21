@@ -62,21 +62,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ModularRPGHeroesPBR\TPController\Scripts\AnimatorMatcher.cs" />
-    <Compile Include="Assets\ModularRPGHeroesPBR\TPController\Scripts\BoolOperator1.cs" />
-    <Compile Include="Assets\ModularRPGHeroesPBR\TPController\Scripts\BoolOperator2.cs" />
-    <Compile Include="Assets\ModularRPGHeroesPBR\TPController\Scripts\CameraManager.cs" />
-    <Compile Include="Assets\ModularRPGHeroesPBR\TPController\Scripts\ControlManager.cs" />
-    <Compile Include="Assets\ModularRPGHeroesPBR\TPController\Scripts\ResetTimer.cs" />
+    <Compile Include="Assets\Resources\ModularRPGHeroesPBR\TPController\Scripts\AnimatorMatcher.cs" />
+    <Compile Include="Assets\Resources\ModularRPGHeroesPBR\TPController\Scripts\BoolOperator1.cs" />
+    <Compile Include="Assets\Resources\ModularRPGHeroesPBR\TPController\Scripts\BoolOperator2.cs" />
+    <Compile Include="Assets\Resources\ModularRPGHeroesPBR\TPController\Scripts\CameraManager.cs" />
+    <Compile Include="Assets\Resources\ModularRPGHeroesPBR\TPController\Scripts\ControlManager.cs" />
+    <Compile Include="Assets\Resources\ModularRPGHeroesPBR\TPController\Scripts\ResetTimer.cs" />
+    <Compile Include="Assets\Resources\Simple UI\Samples\IconPreview.cs" />
+    <Compile Include="Assets\Resources\SimpleHealthBar\Healthbar.cs" />
+    <Compile Include="Assets\Scripts\LobbyButtonMgr.cs" />
+    <Compile Include="Assets\Scripts\PanelScript.cs" />
+    <Compile Include="Assets\Scripts\ShopScript.cs" />
     <Compile Include="Assets\Scripts\Temp.cs" />
     <Compile Include="Assets\Scripts\TitleButtonMgr.cs" />
-    <Compile Include="Assets\Simple UI\Samples\IconPreview.cs" />
-    <Compile Include="Assets\SimpleHealthBar\Healthbar.cs" />
-    <None Include="Assets\ModularRPGHeroesPBR\Shader\PBRMaskTint.shader" />
-    <None Include="Assets\Fantasy Forest Environment Free Sample\StandardNoCulling.shader" />
-    <None Include="Assets\ModularRPGHeroesPBR\ReadMe.txt" />
-    <None Include="Assets\Simple UI\Fonts\OFL.txt" />
-    <None Include="Assets\SimpleHealthBar\documentation.txt" />
+    <None Include="Assets\Resources\ModularRPGHeroesPBR\Shader\PBRMaskTint.shader" />
+    <None Include="Assets\Resources\Fantasy Forest Environment Free Sample\StandardNoCulling.shader" />
+    <None Include="Assets\Resources\ModularRPGHeroesPBR\ReadMe.txt" />
+    <None Include="Assets\Resources\Simple UI\Fonts\OFL.txt" />
+    <None Include="Assets\Resources\SimpleHealthBar\documentation.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
