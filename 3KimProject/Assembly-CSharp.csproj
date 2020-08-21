@@ -62,8 +62,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Board.cs" />
+    <Compile Include="Assets\ModularRPGHeroesPBR\TPController\Scripts\AnimatorMatcher.cs" />
+    <Compile Include="Assets\ModularRPGHeroesPBR\TPController\Scripts\BoolOperator1.cs" />
+    <Compile Include="Assets\ModularRPGHeroesPBR\TPController\Scripts\BoolOperator2.cs" />
+    <Compile Include="Assets\ModularRPGHeroesPBR\TPController\Scripts\CameraManager.cs" />
+    <Compile Include="Assets\ModularRPGHeroesPBR\TPController\Scripts\ControlManager.cs" />
+    <Compile Include="Assets\ModularRPGHeroesPBR\TPController\Scripts\ResetTimer.cs" />
     <Compile Include="Assets\Scripts\Temp.cs" />
+    <Compile Include="Assets\Scripts\TitleButtonMgr.cs" />
+    <Compile Include="Assets\Simple UI\Samples\IconPreview.cs" />
+    <Compile Include="Assets\SimpleHealthBar\Healthbar.cs" />
+    <None Include="Assets\ModularRPGHeroesPBR\Shader\PBRMaskTint.shader" />
+    <None Include="Assets\Fantasy Forest Environment Free Sample\StandardNoCulling.shader" />
+    <None Include="Assets\ModularRPGHeroesPBR\ReadMe.txt" />
+    <None Include="Assets\Simple UI\Fonts\OFL.txt" />
+    <None Include="Assets\SimpleHealthBar\documentation.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -593,31 +606,31 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.4f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>E:/Programming/3KimProject/3KimProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/KGA_16/Documents/3KimProject/3KimProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>E:/Programming/3KimProject/3KimProject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/KGA_16/Documents/3KimProject/3KimProject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>E:/Programming/3KimProject/3KimProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/KGA_16/Documents/3KimProject/3KimProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>E:/Programming/3KimProject/3KimProject/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/KGA_16/Documents/3KimProject/3KimProject/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>E:/Programming/3KimProject/3KimProject/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/KGA_16/Documents/3KimProject/3KimProject/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>E:/Programming/3KimProject/3KimProject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/KGA_16/Documents/3KimProject/3KimProject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>E:/Programming/3KimProject/3KimProject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/KGA_16/Documents/3KimProject/3KimProject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>E:/Programming/3KimProject/3KimProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/KGA_16/Documents/3KimProject/3KimProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>E:/Programming/3KimProject/3KimProject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/KGA_16/Documents/3KimProject/3KimProject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
