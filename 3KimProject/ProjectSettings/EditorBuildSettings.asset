@@ -13,11 +13,11 @@ EditorBuildSettings:
     guid: 4e3da47b74c85e44bbfa9091b31d945c
   - enabled: 0
     path: 
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/PuzzleScene.unity
+    path: Assets/Scenes/BattleScene.unity
     guid: f0ecd9f5777ab804087d87b1e7d1b07c
-  - enabled: 1
-    path: Assets/Resources/Fantasy Forest Environment Free Sample/Scenes/demoScene_free.unity
-    guid: 7769f33fb4fa2e5458344a36556ad760
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

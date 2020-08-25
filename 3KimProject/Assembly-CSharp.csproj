@@ -70,14 +70,22 @@
     <Compile Include="Assets\Resources\ModularRPGHeroesPBR\TPController\Scripts\ResetTimer.cs" />
     <Compile Include="Assets\Resources\Simple UI\Samples\IconPreview.cs" />
     <Compile Include="Assets\Resources\SimpleHealthBar\Healthbar.cs" />
+    <Compile Include="Assets\Scripts\AttBarScript.cs" />
     <Compile Include="Assets\Scripts\Battle\ArrayLayout.cs" />
+    <Compile Include="Assets\Scripts\Battle\Character.cs" />
+    <Compile Include="Assets\Scripts\Battle\Dragon.cs" />
     <Compile Include="Assets\Scripts\Battle\KilledPiece.cs" />
     <Compile Include="Assets\Scripts\Battle\Match3.cs" />
     <Compile Include="Assets\Scripts\Battle\MovePieces.cs" />
     <Compile Include="Assets\Scripts\Battle\NodePiece.cs" />
     <Compile Include="Assets\Scripts\Battle\Point.cs" />
+    <Compile Include="Assets\Scripts\HpBarScript.cs" />
+    <Compile Include="Assets\Scripts\InventoryScript.cs" />
+    <Compile Include="Assets\Scripts\LoadingScript.cs" />
     <Compile Include="Assets\Scripts\LobbyButtonMgr.cs" />
     <Compile Include="Assets\Scripts\PanelScript.cs" />
+    <Compile Include="Assets\Scripts\ParticleAutoDestroy.cs" />
+    <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\ShopScript.cs" />
     <Compile Include="Assets\Scripts\TestScript.cs" />
     <Compile Include="Assets\Scripts\TitleButtonMgr.cs" />
@@ -632,31 +640,31 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.4f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/KGA_14/Desktop/Practice/PuzzlePrac/200824/3KimProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/KGA_14/Downloads/3KimProject-MinjeeVer2/3KimProject-MinjeeVer2/3KimProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/KGA_14/Desktop/Practice/PuzzlePrac/200824/3KimProject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/KGA_14/Downloads/3KimProject-MinjeeVer2/3KimProject-MinjeeVer2/3KimProject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/KGA_14/Desktop/Practice/PuzzlePrac/200824/3KimProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/KGA_14/Downloads/3KimProject-MinjeeVer2/3KimProject-MinjeeVer2/3KimProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/KGA_14/Desktop/Practice/PuzzlePrac/200824/3KimProject/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/KGA_14/Downloads/3KimProject-MinjeeVer2/3KimProject-MinjeeVer2/3KimProject/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/KGA_14/Desktop/Practice/PuzzlePrac/200824/3KimProject/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/KGA_14/Downloads/3KimProject-MinjeeVer2/3KimProject-MinjeeVer2/3KimProject/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/KGA_14/Desktop/Practice/PuzzlePrac/200824/3KimProject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/KGA_14/Downloads/3KimProject-MinjeeVer2/3KimProject-MinjeeVer2/3KimProject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/KGA_14/Desktop/Practice/PuzzlePrac/200824/3KimProject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/KGA_14/Downloads/3KimProject-MinjeeVer2/3KimProject-MinjeeVer2/3KimProject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/KGA_14/Desktop/Practice/PuzzlePrac/200824/3KimProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/KGA_14/Downloads/3KimProject-MinjeeVer2/3KimProject-MinjeeVer2/3KimProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/KGA_14/Desktop/Practice/PuzzlePrac/200824/3KimProject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/KGA_14/Downloads/3KimProject-MinjeeVer2/3KimProject-MinjeeVer2/3KimProject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>

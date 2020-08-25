@@ -13,6 +13,8 @@ public class PanelScript : MonoBehaviour
     Text textCost;
     [SerializeField]
     Image imgItem;
+    [SerializeField]
+    public GameObject ShopUI;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +50,12 @@ public class PanelScript : MonoBehaviour
         set { imgItem = value; }
     }
 
+    public void ShopBuyButtonClick()
+    {
+        // Debug.Log(this.gameObject.name);
+        //Debug.Log(textCost.text);
+        ShopUI.GetComponent<ShopScript>().BuyItem(this.gameObject.name);
 
-
+    }
 
 }

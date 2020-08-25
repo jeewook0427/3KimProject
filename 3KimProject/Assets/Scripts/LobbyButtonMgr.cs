@@ -5,18 +5,24 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-
-
-
 public class LobbyButtonMgr : MonoBehaviour
 {
     
     public GameObject shopUI;
     public GameObject content;
+    public GameObject player;
+    public GameObject Warning;
+    public GameObject lodingUI;
+    public Slider loadingBar;
+    public Text loadinText;
 
+
+
+    int count;
     // Start is called before the first frame update
     void Start()
     {
+        count = 0;
         //shopUI = GameObject.FindGameObjectWithTag("SHOP");
     }
 
@@ -28,13 +34,29 @@ public class LobbyButtonMgr : MonoBehaviour
     //캐릭터 변경 
     public void CharLeftButtonClick()
     {
+       if (shopUI.activeSelf == false)
+        {
 
+            if (count == 0)
+                count = 2;
+            else count--;
+
+            player.GetComponent<Player>().charTypeNum = count;
+            player.GetComponent<Player>().ChangeChar();
+        }
     }
     public void CharRightButtonClick()
     {
-        //SceneManager.LoadScene("Lobby Scene");
-    }
+        if (shopUI.activeSelf == false)
+        {
+            if (count == 2)
+                count = 0;
+            else count++;
 
+            player.GetComponent<Player>().charTypeNum = count;
+            player.GetComponent<Player>().ChangeChar();
+        }
+    }
 
 
     //샵 버튼 함수
@@ -43,37 +65,111 @@ public class LobbyButtonMgr : MonoBehaviour
         if (shopUI.activeSelf == false)
         {
             shopUI.SetActive(true);
-            
+            content.transform.position = new Vector3(70f, content.transform.position.y, content.transform.position.z);
+
         }
-        content.transform.position = new Vector3(70f, content.transform.position.y, content.transform.position.z);
+       // content.transform.position = new Vector3(70f, content.transform.position.y, content.transform.position.z);
 
     }
+    // 상점 종료 버튼
     public void ShopCloseButtonClick()
     {
-        shopUI.SetActive(false);
+        if (shopUI.activeSelf == true&& Warning.activeSelf==false)
+        {
+            shopUI.SetActive(false);
+        }
     }
+    //상점 구매 버튼 
     public void ShopBuyButtonClick()
     {
-        //SceneManager.LoadScene("Lobby Scene");
+        if (shopUI.activeSelf == true)
+        {
+            
+        }
+        //Debug.Log();
     }
+    // 금액 부족 경고 안내창 종료 버튼 
     public void WarnningCloseButtonClick()
     {
-        //SceneManager.LoadScene("Lobby Scene");
+        if (shopUI.activeSelf == true)
+        {
+            Warning.SetActive(false);
+        }
+
+    }
+    public void CoinPlusButtonClick()
+    {
+        player.GetComponent<Player>().SetCoin();
+
     }
 
-
-
-
+    // 전투 버튼
     public void SoloButtonClick()
     {
-        SceneManager.LoadScene("PuzzleScene");
+        if (shopUI.activeSelf == false)
+        {
+            player.GetComponent<Player>().SelectChar();
+            lodingUI.SetActive(true);
+            loadingBar.gameObject.SetActive(true);
+            StartCoroutine(Loading());
+        }
     }
     public void MultyButtonClick()
     {
-        //SceneManager.LoadScene("Lobby Scene");
+        if (shopUI.activeSelf == false)
+        {
+            lodingUI.SetActive(true);
+            player.GetComponent<Player>().SelectChar();
+        }
     }
 
-   
 
+    IEnumerator Loading()
+    {
+        yield return null;
+        AsyncOperation operation = SceneManager.LoadSceneAsync(2);
+        operation.allowSceneActivation = false;
+        while (!operation.isDone)
+        {
+            yield return null;
+            if (loadingBar.value < 0.9f)
+            {
+                loadingBar.value = Mathf.MoveTowards(loadingBar.value, 0.9f, Time.deltaTime);
+
+                if (loadingBar.value < 0.3f)
+                    loadinText.text = "Looking For Sword...";
+                else if (loadingBar.value >= 0.3f && loadingBar.value < 0.6f)
+                    loadinText.text = "Looking For Shield...";
+                else if (loadingBar.value >= 0.6f && loadingBar.value < 0.8f)
+                    loadinText.text = "Looking For Friend...";
+                else if (loadingBar.value >= 0.8f)
+                    loadinText.text = "Good Luck For You!";
+
+            }
+            else if (operation.progress >= 0.9f)
+            {
+                loadingBar.value = Mathf.MoveTowards(loadingBar.value, 1f, Time.deltaTime);
+
+                if (loadingBar.value < 0.3f)
+                    loadinText.text = "Looking For Sword...";
+                else if (loadingBar.value >= 0.3f && loadingBar.value < 0.6f)
+                    loadinText.text = "Looking For Shield...";
+                else if (loadingBar.value >= 0.6f && loadingBar.value < 0.8f)
+                    loadinText.text = "Looking For Friend...";
+                else if (loadingBar.value >= 0.8f)
+                    loadinText.text = "Good Luck For You!";
+
+            }
+
+            if (loadingBar.value >= 1f)
+            {
+                if (operation.progress >= 0.9f)
+                { operation.allowSceneActivation = true; }
+            }
+
+
+
+        }
+    }
 
 }

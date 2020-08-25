@@ -1,28 +1,29 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEditor;
-using System.Collections;
 
 [CustomPropertyDrawer(typeof(ArrayLayout))]
 public class CustPropertyDrawer : PropertyDrawer
 {
-
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         EditorGUI.PrefixLabel(position, label);
         Rect newposition = position;
         newposition.y += 18f;
         SerializedProperty data = property.FindPropertyRelative("rows");
-        if (data.arraySize != 10)
-            data.arraySize = 10;
-        //data.rows[0][]
-        for (int j = 0; j < 10; j++)
+        //data.rows[0][0]
+        
+        for (int j = 0; j < 12; j++)
         {
             SerializedProperty row = data.GetArrayElementAtIndex(j).FindPropertyRelative("row");
-            newposition.height = 16f;
-            if (row.arraySize != 16)
-                row.arraySize = 16;
-            newposition.width = position.width / 16;
-            for (int i = 0; i < 16; i++)
+            newposition.height = 18f;
+            if (row.arraySize != 12)
+                row.arraySize = 12;
+
+            newposition.width = position.width / 12;
+
+            for (int i = 0; i < 12; i++)
             {
                 EditorGUI.PropertyField(newposition, row.GetArrayElementAtIndex(i), GUIContent.none);
                 newposition.x += newposition.width;
@@ -35,6 +36,6 @@ public class CustPropertyDrawer : PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        return 18f * 13;
+        return 18f *13;
     }
 }
