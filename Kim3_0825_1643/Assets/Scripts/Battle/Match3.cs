@@ -21,7 +21,7 @@ public class Match3 : MonoBehaviour
 
     [Header("Text")]
     public Text comboText;
-    int width = 12;
+    int width = 15;
     int height = 12;
     int[] fills;
     Node[,] board; //???

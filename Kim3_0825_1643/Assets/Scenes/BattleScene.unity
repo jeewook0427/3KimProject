@@ -154,7 +154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -5}
+  m_AnchoredPosition: {x: -100, y: -5}
   m_SizeDelta: {x: 768, y: 768}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &24549138
@@ -210,9 +210,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.3
+    x: 0.4
     y: 0
-    width: 0.7
+    width: 0.6
     height: 0.5
   near clip plane: 0.3
   far clip plane: 1000
@@ -242,7 +242,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81004974}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -109, z: -100}
+  m_LocalPosition: {x: 0, y: -109, z: -139}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -778,7 +778,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -5}
+  m_AnchoredPosition: {x: -100, y: -5}
   m_SizeDelta: {x: 768, y: 768}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1178328044
@@ -957,7 +957,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.3
+    width: 0.4
     height: 0.5
   near clip plane: 0.3
   far clip plane: 1000
@@ -1149,7 +1149,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 832, y: 832}
+  m_ReferenceResolution: {x: 800, y: 1650}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
@@ -1312,18 +1312,18 @@ MonoBehaviour:
   boardLayout:
     grid: {fileID: 0}
     rows:
-    - row: 000000000000000000000000
-    - row: 000000000000000000000000
-    - row: 000000000000000000000000
-    - row: 000000000000000000000000
-    - row: 000000000000000000000000
-    - row: 000000000000000000000000
-    - row: 000000000000000000000000
-    - row: 000000000000000000000000
-    - row: 000000000000000000000000
-    - row: 000000000000000000000000
-    - row: 000000000000000000000000
-    - row: 000000000000000000000000
+    - row: 000000000000000000000000000000
+    - row: 000000000000000000000000000000
+    - row: 000000000000000000000000000000
+    - row: 000000000000000000000000000000
+    - row: 000000000000000000000000000000
+    - row: 000000000000000000000000000000
+    - row: 000000000000000000000000000000
+    - row: 000000000000000000000000000000
+    - row: 000000000000000000000000000000
+    - row: 000000000000000000000000000000
+    - row: 000000000000000000000000000000
+    - row: 000000000000000000000000000000
   blockColors:
   - {r: 0, g: 1, b: 0.27466083, a: 1}
   - {r: 1, g: 0.0990566, b: 0.84545624, a: 1}
