@@ -9,7 +9,6 @@ public class Match3 : MonoBehaviour
     public ArrayLayout boardLayout;
    
     [Header("UI Elements")]
-    public Color[] blockColors;
     public Sprite[] pieces;
     public RectTransform gameBoard;
     public RectTransform killedBoard;
@@ -99,11 +98,7 @@ public class Match3 : MonoBehaviour
     {
         List<KilledPiece> available = new List<KilledPiece>();
         for (int i = 0; i < killed.Count; i++)
-        {
-            killed[i].killedBoard = killedBoard;
             if (!killed[i].falling) available.Add(killed[i]);
-        }
-          
 
         KilledPiece set = null;
         if (available.Count > 0)
@@ -112,14 +107,13 @@ public class Match3 : MonoBehaviour
         {
             GameObject kill = GameObject.Instantiate(killedpiece, killedBoard);
             KilledPiece kPiece = kill.GetComponent<KilledPiece>();
-            kPiece.killedBoard = killedBoard;
             set = kPiece;
             killed.Add(kPiece);
         }
 
         int val = getValueAtPoint(p) - 1;
         if ((set != null) && val >= 0 && val < pieces.Length)
-            set.Initialize(pieces[val], getPositionFromPoint(p), blockColors[val]);
+            set.Initialize(pieces[val], getPositionFromPoint(p));
     }
 
     Node getNodeAtPoint (Point p)
