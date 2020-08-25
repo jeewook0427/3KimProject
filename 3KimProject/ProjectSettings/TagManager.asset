@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SHOP
+  - Warning
+  - panel1
+  - panel2
+  - panel3
+  - panel4
+  - panel5
+  - panel6
   layers:
   - Default
   - TransparentFX
@@ -13,9 +21,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - BG
+  - Dragon
+  - Player
   - 
   - 
   - 
@@ -40,4 +48,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BG
+    uniqueID: 683526295
+    locked: 0
+  - name: UI
+    uniqueID: 3908583055
+    locked: 0
+  - name: Character
+    uniqueID: 804157225
     locked: 0

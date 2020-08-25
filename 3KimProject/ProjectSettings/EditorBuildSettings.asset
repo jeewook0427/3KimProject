@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Title Scene.unity
+    guid: 19a085363055c7942aa4ad231a250ca3
+  - enabled: 1
+    path: Assets/Scenes/Lobby Scene.unity
+    guid: 4e3da47b74c85e44bbfa9091b31d945c
+  - enabled: 0
+    path: 
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/PuzzleScene.unity
+    guid: f0ecd9f5777ab804087d87b1e7d1b07c
+  - enabled: 1
+    path: Assets/Resources/Fantasy Forest Environment Free Sample/Scenes/demoScene_free.unity
+    guid: 7769f33fb4fa2e5458344a36556ad760
   m_configObjects: {}
