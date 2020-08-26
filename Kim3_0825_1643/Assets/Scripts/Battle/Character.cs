@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public enum PLAYER_STATE
 {
     IDLE,
@@ -18,17 +18,17 @@ public class Character : MonoBehaviour
     [SerializeField]
     PLAYER_STATE state = PLAYER_STATE.IDLE;
 
-    [SerializeField]
-    float attackValue = 1000f;
-    [SerializeField]
-    float HP = 100f;
-
-
     Animator anim;
     // Start is called before the first frame update
     void Start()
     {
+
         anim = GetComponent<Animator>();
+        if (SceneManager.GetActiveScene().name == "BattleScene")
+        {
+            anim.SetBool("isAppear", true);
+        }
+        //anim.SetBool("isAppear", true);
         ChangeState(PLAYER_STATE.IDLE);
     }
 
@@ -97,7 +97,6 @@ public class Character : MonoBehaviour
         anim.SetBool("isAttack", false);
         anim.SetBool("isIdle", false);
         anim.SetBool("isDamaged", false);
-        anim.SetBool("isAppear", false);
         anim.SetBool("isDie", false);
 
         StopAllCoroutines();

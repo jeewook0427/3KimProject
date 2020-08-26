@@ -8507,6 +8507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4339868350552799999}
   - component: {fileID: 4431346767407811847}
+  - component: {fileID: 8065702662476533025}
   m_Layer: 0
   m_Name: DoubleSwordFallenKing
   m_TagString: Untagged
@@ -8604,6 +8605,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8065702662476533025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4336747800535224203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48d826e3e5d7e540bc1307745cf6130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
 --- !u!1 &4336749918683041471
 GameObject:
   m_ObjectHideFlags: 0
