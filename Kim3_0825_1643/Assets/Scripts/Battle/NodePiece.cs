@@ -18,9 +18,12 @@ public class NodePiece : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     bool updating;
     Image img;
 
-    public void Initalize(int v, Point p, Sprite piece)
+    public void Start()
     {
-       
+        rect = GetComponent<RectTransform>();
+    }
+    public void Initalize(int v, Point p, Sprite piece)
+    {       
         img = GetComponent<Image>();
         rect = GetComponent<RectTransform>();
 
@@ -43,8 +46,7 @@ public class NodePiece : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void MovePositionTo(Vector2 move)
     {
-        rect.anchoredPosition = Vector2.Lerp(rect.anchoredPosition, move, Time.deltaTime * 16f);
-            
+        rect.anchoredPosition = Vector2.Lerp(rect.anchoredPosition, move, Time.deltaTime * 16f);            
     }
 
     public bool UpdatePiece()
@@ -73,13 +75,13 @@ public class NodePiece : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (updating) return;
         Match3.ComboCount = 0;
-        Debug.Log("Grab" + transform.name);
+        //Debug.Log("Grab" + transform.name);
         MovePieces.instance.MovePiece(this);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("Let go" + transform.name);
+        //Debug.Log("Let go" + transform.name);
         MovePieces.instance.DropPiece();
     }
 }
